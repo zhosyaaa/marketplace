@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
     @Autowired
     private ProductService productService;
-    @Autowired
-    private ProductRepository productRepository;
     @GetMapping
-    public String mainPage(Model model) {
-        Iterable<Product> products = productService.getProductRepository().findAll();
-        model.addAttribute("products", products);
-        return "MainPage";
+    public Iterable<Product> mainPage(Model model) {
+        return productService.getProductRepository().findAll();
     }
 }

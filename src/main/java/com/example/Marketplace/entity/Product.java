@@ -31,4 +31,18 @@ public class Product {
     private String gender;
     @Column(name = "composition" , nullable = false)
     private String composition;
+    @Column(name = "sale")
+    private double sale;
+
+    public Product(String title, String color, String description, double price, String sizes, String style, String gender, String composition, double sale) {
+        this.title = title;
+        this.color = color;
+        this.description = description;
+        this.price = price;
+        this.sizes = sizes;
+        this.style = style;
+        this.gender = gender;
+        this.composition = composition;
+        this.sale = sale;
+    }
 }
