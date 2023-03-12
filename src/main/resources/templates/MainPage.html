@@ -29,13 +29,13 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
         </a>
         <a class="nav-link" href="/main">Home page</a>
-        <a class="nav-linkk" href="#">Women's clothing</a>
-        <a class="nav-link" href="#">Men's clothing</a>
-        <a class="nav-link" href="#">Children's clothing</a>
-        <a class="nav-link" href="#">Sale%</a>
+        <a class="nav-link" href="/product/womensC">Women's clothing</a>
+        <a class="nav-link" href="/product/mensC">Men's clothing</a>
+        <a class="nav-link" href="/product/childresC">Children's clothing</a>
+        <a class="nav-link" href="/product/sale">Sale%</a>
         <a class="nav-link" href="#">Search</a>
         <a class="nav-link" href="#">Sing in</a>
-        <a class="nav-link" href="/addProduct">Add product</a>
+        <a class="nav-link" href="/product/add">Add product</a>
       </nav>
     </header>
     <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
@@ -46,24 +46,26 @@
       </div>
     </div>
 
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <div class="col">
-        <div class="card shadow-sm" th:each="el: ${products}">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-          <div class="card-body" >
-            <h3 class="card-text" th:text="${el.price}"></h3>
-            <p class="card-text" th:text="${el.title}"></p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button"  th:href="'/product/' + ${el.getId()}" class="btn btn-sm btn-outline-secondary">View</button>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm" th:each="el: ${product}">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+              <div class="card-body" >
+                <h3 class="card-text" th:text="${el.price}"></h3>
+                <p class="card-text" th:text="${el.title}"></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button"  th:href="'/product/' + ${el.getId()}" class="btn btn-sm btn-outline-secondary">View</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
 
   <footer class="container py-5" th:fragment="footer">
     <div class="row">

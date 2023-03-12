@@ -2,7 +2,6 @@ package com.example.Marketplace.controller;
 
 import com.example.Marketplace.entity.Product;
 import com.example.Marketplace.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/product")
 public class ProductController {
-    @Autowired
     private final ProductService productService;
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -25,8 +23,9 @@ public class ProductController {
         return "NewProduct";
     }
     @PostMapping("/add")
-    public Iterable<Product> addProduct(@RequestBody Product product){
-        return productService.findAll();
+    public String addProduct(@RequestBody Product product){
+        productService.getProductRepository().save(product);
+        return "redirect:/MainPage";
     }
     @GetMapping("/{id}")
     public Optional<Product> getProductById(@PathVariable long id){
@@ -35,30 +34,38 @@ public class ProductController {
 
 
     @GetMapping("/womensC")
-    public List<Product> getWomensClothing(Model model){
-        return productService.getWomensClothing();
+    public String getWomensClothing(Model model){
+        model.addAttribute("product", productService.getWomensClothing());
+        model.addAttribute("title", "Women's clothing");
+        return "Category";
     }
     @GetMapping("/mensC")
-    public Iterable<Product> getMensClothing(Model model){
-        return productService.getMensClothing();
+    public String getMensClothing(Model model){
+        model.addAttribute("product", productService.getMensClothing());
+        model.addAttribute("title", "Men's clothing");
+        return "Category";
     }
     @GetMapping("/childresC")
-    public Iterable<Product> getChildrensClothing(Model model){
-        return productService.getChildrensClothing();
+    public String getChildrensClothing(Model model){
+        model.addAttribute("product", productService.getChildrensClothing());
+        model.addAttribute("title", "Children's clothing");
+        return "Category";
     }
 
     @GetMapping("/sale")
-    public List<Product> getSaleProducts(){
-        return productService.getSaleProducts();
+    public String getSaleProducts(Model model){
+        model.addAttribute("product", productService.getWomensClothing());
+        model.addAttribute("title", "Sale%");
+        return "Category";
     }
 //    @PostMapping("/search")
 //    public List<Product> search(@RequestBody Product product){
 //
 //        return
 //    }
-    @GetMapping("/search")
-    public String search(Model model){
-        model.addAttribute("product", new Product());
-        return "";
-    }
+//    @GetMapping("/search")
+//    public String search(Model model){
+//        model.addAttribute("product", new Product());
+//        return "";
+//    }
 }

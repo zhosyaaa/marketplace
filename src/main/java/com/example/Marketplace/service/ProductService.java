@@ -5,6 +5,7 @@ import com.example.Marketplace.entity.Product;
 import com.example.Marketplace.repository.ProductRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @Data
 public class ProductService {
-    @Autowired
     private ProductRepository productRepository;
-
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -25,19 +24,6 @@ public class ProductService {
                 new Product("b", "b", "bbbbbbbbb", 200, "s", "b", "Female", "a", 0),
                 new Product("a", "a", "aaaaaaaaa", 100, "s", "Children's clothing", "male", "a", 10)
         ));
-    }
-
-    public ProductService() {
-    }
-
-
-    public ProductRepository getProductRepository() {
-        return productRepository;
-    }
-
-
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
     }
     public List<Product> findAll(){
         return productRepository.findAll();
